@@ -11,14 +11,15 @@ This monorepo contains a **PHP backend (Apache)** and some **frontend** assets/e
 - Clean URLs via Apache `.htaccess`
 
 ## 📁 Project structure
-backend/ # PHP code
-public/ # DocumentRoot (index.php, assets, pages)
-.htaccess
-config/ # config.php + .env (not in git)
-.env.example
-frontend/ # static/front-end materials (not served by Apache)
-database/
-schema.sql # SQL dump creating sample DB airportdb
+Wonderlust/
+├── backend/ # PHP backend code
+│ ├── public/ # DocumentRoot (index.php, assets, pages)
+│ │ └── .htaccess
+│ ├── config/ # config.php + .env (not in git)
+│ └── .env.example
+├── frontend/ # static/front-end materials (not served by Apache)
+└── database/
+└── schema.sql # SQL dump creating sample DB airportdb
 
 markdown
 Copy code
@@ -73,11 +74,6 @@ Docker: DB_HOST=db (service name)
 Production host: provider’s host/user/password/DB name
 
 
----
-
-## Docker Compose example (fixed)
-
-```markdown
 ## 🐳 Optional: Docker (dev)
 Example `docker-compose.yml`:
 ```yaml
@@ -112,12 +108,6 @@ If you ever use Google/Maps keys in the browser, restrict them in Google Cloud (
 
 If a secret leaked in the repo: rotate/delete it at the provider, remove from code, and (optionally) clean git history.
 
-
----
-
-## DB test script (fixed)
-
-```markdown
 ## 🧪 DB connection test (optional)
 Create `backend/public/db-test.php`:
 ```php
