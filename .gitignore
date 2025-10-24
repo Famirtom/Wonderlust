@@ -1,0 +1,22 @@
+# Node / frontend
+node_modules/
+dist/
+build/
+.cache/
+*.log
+
+# PHP / backend
+vendor/
+composer.lock
+.env
+backend/.env
+
+# OS / IDE
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Env vari locali
+.env.local
+.env.*.local
