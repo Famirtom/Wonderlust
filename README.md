@@ -1,69 +1,130 @@
 # Wanderlust Airline — Monorepo
 
-Applicazione demo per gestione **voli e passeggeri**.  
-Monorepo con **backend PHP** e materiale **frontend**.
+Demo app to manage **flights and passengers**.  
+This monorepo contains a **PHP backend (Apache)** and some **frontend** assets/examples.
 
-## ✨ Funzionalità principali
-- Home con link a:
+## ✨ Features
+- Home page with links:
   - Passenger and Flight Report
   - Passenger Entry Form
-- Connessione a MySQL (database di esempio: `airportdb`)
-- Routing Apache via `.htaccess`
+- MySQL connection (sample DB: `airportdb`)
+- Clean URLs via Apache `.htaccess`
 
-## 📁 Struttura del progetto
-backend/ # codice PHP
-├─ public/ # DocumentRoot (index.php, asset, pagine)
-│ └─ .htaccess
-├─ config/ # config.php + .env (non in git)
-└─ .env.example
-frontend/ # vecchio sito/statici di esempio (non serviti da Apache)
+## 📁 Project structure
+backend/ # PHP code
+public/ # DocumentRoot (index.php, assets, pages)
+.htaccess
+config/ # config.php + .env (not in git)
+.env.example
+frontend/ # static/front-end materials (not served by Apache)
 database/
-└─ schema.sql # dump SQL (crea DB airportdb con tabelle e dati demo)
+schema.sql # SQL dump creating sample DB airportdb
 
-## 🧰 Requisiti
-- **PHP 8.1+** con Apache (XAMPP, MAMP, WAMP **oppure** Docker)
-- **MySQL/MariaDB 10.4+**
-- **Git**
-- (opzionale) **Node.js** se vuoi lavorare al materiale `frontend/`
+## 🧰 Requirements
+- PHP 8.1+ with Apache (XAMPP/MAMP/WAMP **or** Docker)
+- MySQL/MariaDB 10.4+
+- Git
+- (optional) Node.js if you want to work on `frontend/`
 
-## 🚀 Avvio rapido con XAMPP (Windows)
-1. **Importa il database**  
-   - Apri `http://localhost/phpmyadmin` → *Importa* → carica `database/schema.sql`  
-   - Dopo l’import a sinistra vedrai il DB **`airportdb`** con le tabelle.
+## 🚀 Quick start (XAMPP / Windows)
+1) **Import the database**  
+   Open `http://localhost/phpmyadmin` → **Import** → choose `database/schema.sql`.  
+   You should see a DB named **`airportdb`** with tables.
 
-2. **Configura variabili**  
-   - Copia `backend/.env.example` in `backend/.env`  
-   - Modifica i valori reali:
-     ```
-     APP_ENV=local
-     APP_URL=http://localhost
-     DB_HOST=127.0.0.1
-     DB_PORT=3306
-     DB_NAME=airportdb
-     DB_USER=root
-     DB_PASS=
-     ```
+2) **Environment variables**  
+   Copy `backend/.env.example` → `backend/.env` and set:
+   APP_ENV=local
+APP_URL=http://localhost
 
-3. **Punta Apache alla cartella giusta**  
-   - XAMPP → Apache → **Config** → `httpd.conf`  
-   - imposta:
-     ```
-     DocumentRoot "C:/.../wonderlust/backend/public"
-     <Directory "C:/.../wonderlust/backend/public">
-         AllowOverride All
-         Require all granted
-     </Directory>
-     ```
-   - verifica che `mod_rewrite` sia attivo (riga `LoadModule rewrite_module ...` non commentata)  
-   - **Riavvia** Apache
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_NAME=airportdb
+DB_USER=root
+DB_PASS=
 
-4. **Apri l’app**  
-   - Vai su **http://localhost**  
-   - Dovresti vedere la home “Wanderlust Airline Database”.
+3) **Apache DocumentRoot**  
+XAMPP → Apache → **Config** → `httpd.conf`  
+Set:
+DocumentRoot "C:/.../wonderlust/backend/public"
+<Directory "C:/.../wonderlust/backend/public">
+AllowOverride All
+Require all granted
+</Directory>
+Ensure `mod_rewrite` is enabled (the line `LoadModule rewrite_module ...` **not** commented).  
+Restart Apache.
 
-## 🐳 Avvio con Docker (opzionale)
-> Solo per sviluppo rapido; personalizza credenziali secondo necessità.
+4) **Open the app** → `http://localhost`  
 
-```bash
-docker compose up -d
-# backend disponibile su http://localhost:8080
+> 💡 **Does the database only work with XAMPP?**  
+> No. XAMPP is just an easy local bundle. The app works with **any MySQL** server (Docker, hosting provider, VPS).  
+> Use the correct credentials in `backend/.env`:
+> - Local XAMPP: `DB_HOST=127.0.0.1`, user `root`, usually empty password  
+> - Docker: `DB_HOST=db` (service name)  
+> - Production host: provider’s host/user/password/DB name
+
+## 🐳 Optional: Docker (dev)
+Example `docker-compose.yml`:
+```yaml
+version: "3.9"
+services:
+db:
+ image: mysql:8
+ environment:
+   MYSQL_DATABASE: airportdb
+   MYSQL_ROOT_PASSWORD: root
+ ports: ["3306:3306"]
+web:
+ image: php:8.2-apache
+ volumes:
+   - ./backend:/var/www/html
+ ports: ["8080:80"]
+Start: docker compose up -d → open http://localhost:8080.
+
+🔐 Security / Secrets
+
+Never commit credentials: keep them in backend/.env (already git-ignored).
+
+If you ever use Google/Maps keys in the browser, restrict them in Google Cloud (HTTP referrers + only the APIs you use).
+
+If a secret leaked in the repo: rotate/delete it at the provider, remove from code, and (optionally) clean git history.
+
+🧪 DB connection test (optional)
+
+Create backend/public/db-test.php:
+<?php
+require_once __DIR__ . '/../config/config.php';
+$mysqli = @new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME, (int)DB_PORT);
+echo $mysqli->connect_errno ? 'KO: '.$mysqli->connect_error : 'OK: '.DB_NAME;
+Visit http://localhost/db-test.php and delete the file after testing.
+
+📦 Deploy (production)
+
+Shared hosting (Apache + PHP + MySQL)
+
+Upload only backend/
+
+Set DocumentRoot to backend/public
+
+Create/import DB, set correct credentials in backend/.env
+
+Enable HTTPS (provider panel)
+
+VPS
+
+Install Apache + PHP 8.2 + MySQL
+
+Clone repo to /var/www/wonderlust
+
+VirtualHost pointing to /var/www/wonderlust/backend/public
+
+Put production .env, restart Apache
+
+📝 License
+
+MIT
+
+👤 Author
+
+Tommaso Rea (Famirtom)
+
+
