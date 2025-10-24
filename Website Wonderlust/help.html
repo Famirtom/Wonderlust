@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!--Title page-->
+    <title>WANDERLUST - Sign in</title>
+	<!-- internal CSS-->
+    <style>
+		/* Stylin for the header */
+       header {      
+			background-image: url('volo4.jpg');
+			background-size: cover;
+        }
+		/* Navigation, ordered list, unordered list */
+        nav, ol, ul {
+            text-align: center;
+            border: 5px solid red;
+            font-size: 20px;
+        }
+        nav a:hover {
+            background-color: #ddd;
+        }
+		/* Stylin for main content div */
+        div {
+            margin: 20px auto;
+            width: 50%;
+            border: 2px solid #ff4500; /* Dark red */
+            border-radius: 5px;
+            background-color: pink; /* Light beige for the login module background */
+            padding: 40px;
+        }
+		/* Stylin for input form */
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        select,
+        textarea {
+            width: 50%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 2px solid #0000cd; /* Dark blue for the login module inputs */
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+		/* Stylin forThe submit button */
+        #myButton {
+            width: 50%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 20px;
+        }
+	
+        input[type="submit"]:hover {
+            background-color: #0000cd; /* Blu scuro durante l'hover */
+        }
+		/* Styling for footer */
+        footer {
+            text-align: center;
+            border: 5px solid red;
+            font-size: 20px;
+        }
+		#myButton:hover {
+		background-color: red;
+}
+    </style>
+	<script>
+	function submitFunction() 
+{
+		alert("Thanks for submitting your request. You will receive and email soon!");
+} 
+	function myname(){
+	document.getElementById("name").style.backgroundColor= "red";
+}
+	function myemal(){
+	document.getElementById("email").style.backgroundColor= "green";
+}
+</script>
+</head>
+<body>
+<!-- Header section with logo-->
+<header>
+    <a href="home.html">
+        <img src="logo.png" alt="Wanderlust" title="Wanderlust" width="500" height="300">
+    </a>
+</header>
+
+<hr>
+<!-- Nav links-->
+<nav>
+    <table cellspacing="25" cellpadding="5">
+        <tr>
+			<!-- Links of pages-->
+            <td><font size="7+"><a href="Naples.html"> Naples </a></td>
+            <td><font size="7+"><a href="Rome.html"> Rome </a></td>
+            <td><font size="7+"><a href="Venice.html"> Venice </a></td>
+            <td><font size="7+"><a href="Sign in.html"> Sign In </a></td>
+            <td><font size="7+"><a href="About us.html"> About us </a></td>
+            <td><font size="7+"><a href="home.html"> Home </a> </td>
+        </tr>
+    </table>
+</nav>
+</hr>
+<br><br>
+<div>
+    <form>
+		<!-- Heading for contact Us form-->
+        <h3>Contact Us Form</h3>
+		<!-- Name input-->
+        <label for="name">Name(*):</label>
+        <input type="text" id="name" name="fullname" placeholder="Your name.." onkeypress=" myname()" required><br>
+		<!-- Email input-->
+        <label for="email">E-Mail(*):</label>
+        <input type="email" id="email" name="email" placeholder="Your e-mail" onkeypress="myemal()" required>
+		<!-- Password input-->
+        <p><label for="psw">Password(*):</label>
+        <input type="password" name="psw" placeholder="Your password" required><br>
+		<!-- B'day input-->
+        <label for="bday">Enter your b'day(after 2003-01-01)(*):</label>
+        <input type="date" name="bday" min="2003-01-02"><br>
+		<!-- List of selectiong country-->
+        <label for="country">Country</label>
+        <select id="country" name="country">
+            <option value="UK">UK</option>
+            <option value="USA">USA</option>
+            <option value="India">India</option>
+            <option value="Nigeria">Nigeria</option>
+            <option value="Poland">Poland</option>
+            <option value="Iran">Iran</option>
+            <option value="Japan">Japan</option>
+            <option value="Spain">Spain</option>
+            <option value="France">France</option>
+            <option value="Italy">Italy</option>
+        </select><br>
+		<!-- List for selectiong city-->
+        <label for="cities">City :</label><br>
+        <input list="cities" name="city">
+        <datalist id="cities">
+            <option value="London">
+            <option value="Barcelona">
+            <option value="Paris">
+            <option value="New Delhi">
+            <option value="Kolkata">
+            <option value="Tokyo">
+            <option value="Tehran">
+            <option value="Lagos">
+            <option value="Warsaw">
+            <option value="Catania">
+            <option value="Valencia">
+        </datalist><br>
+		<!-- Text area for comments-->
+        <label for="comments">Comments :</label><br>
+        <textarea name="comments" rows="15" cols="40"></textarea><br><br>
+		<!-- Submit button-->
+        <button id="myButton" onclick="submitFunction()">Submit</button>
+
+    </form>
+</div>
+<!-- Footer, contact infomation and copyright-->
+<footer>
+    Tel. +39 0789567223 or via email Wanderlust@TItaly.com<br>
+    <br>
+    &copy;Tommaso Rea<br>
+</footer>
+
+</body>
+</html>
