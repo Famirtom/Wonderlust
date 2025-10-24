@@ -48,13 +48,15 @@ Copy code
 Apache DocumentRoot
 XAMPP → Apache → Config → httpd.conf
 
-apache
-Copy code
+3. **Apache DocumentRoot**  
+XAMPP → Apache → **Config** → `httpd.conf`  
+```apache
 DocumentRoot "C:/.../wonderlust/backend/public"
 <Directory "C:/.../wonderlust/backend/public">
   AllowOverride All
   Require all granted
 </Directory>
+
 Ensure mod_rewrite is enabled (the line LoadModule rewrite_module ... not commented).
 Restart Apache.
 
@@ -70,11 +72,15 @@ Docker: DB_HOST=db (service name)
 
 Production host: provider’s host/user/password/DB name
 
-🐳 Optional: Docker (dev)
-Example docker-compose.yml:
 
-yaml
-Copy code
+---
+
+### Docker Compose example (fixed)
+
+```markdown
+## 🐳 Optional: Docker (dev)
+Example `docker-compose.yml`:
+```yaml
 version: "3.9"
 services:
   db:
@@ -90,11 +96,13 @@ services:
       - ./backend:/var/www/html
     ports:
       - "8080:80"
+
 Start with:
 
 bash
 Copy code
 docker compose up -d
+
 Then open http://localhost:8080.
 
 🔐 Security / Secrets
@@ -104,15 +112,20 @@ If you ever use Google/Maps keys in the browser, restrict them in Google Cloud (
 
 If a secret leaked in the repo: rotate/delete it at the provider, remove from code, and (optionally) clean git history.
 
-🧪 DB connection test (optional)
-Create backend/public/db-test.php:
 
-php
-Copy code
+---
+
+### DB test script (fixed)
+
+```markdown
+## 🧪 DB connection test (optional)
+Create `backend/public/db-test.php`:
+```php
 <?php
 require_once __DIR__ . '/../config/config.php';
 $mysqli = @new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME, (int)DB_PORT);
 echo $mysqli->connect_errno ? 'KO: '.$mysqli->connect_error : 'OK: '.DB_NAME;
+
 Visit http://localhost/db-test.php and delete the file after testing.
 
 📦 Deploy (production)
