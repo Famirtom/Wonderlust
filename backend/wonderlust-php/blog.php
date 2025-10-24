@@ -7,9 +7,9 @@
 //client secret
 
 //scope
-//https://www.googleapis.com/auth/blogger
+//
 //api key
-//AIzaSyB8VRT7ullROJL4AW_qKMtwFMqFQTILDmU
+//
 ?>
 <button onclick="login();"> login </button>
 <script>
@@ -27,4 +27,5 @@
 </body>
 
 </html>
+
 
