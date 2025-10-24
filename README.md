@@ -48,7 +48,7 @@ Copy code
 Apache DocumentRoot
 XAMPP → Apache → Config → httpd.conf
 
-3. **Apache DocumentRoot**  
+**Apache DocumentRoot**  
 XAMPP → Apache → **Config** → `httpd.conf`  
 ```apache
 DocumentRoot "C:/.../wonderlust/backend/public"
@@ -75,7 +75,7 @@ Production host: provider’s host/user/password/DB name
 
 ---
 
-### Docker Compose example (fixed)
+## Docker Compose example (fixed)
 
 ```markdown
 ## 🐳 Optional: Docker (dev)
@@ -115,7 +115,7 @@ If a secret leaked in the repo: rotate/delete it at the provider, remove from co
 
 ---
 
-### DB test script (fixed)
+## DB test script (fixed)
 
 ```markdown
 ## 🧪 DB connection test (optional)
