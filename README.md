@@ -106,7 +106,7 @@ If you ever use Google/Maps keys in the browser, restrict them in Google Cloud (
 
 If a secret leaked in the repo: rotate/delete it at the provider, remove from code, and (optionally) clean git history.
 
-🧪 DB connection test (optional)
+## 🧪 DB connection test (optional)
 Create backend/public/db-test.php:
 
 php
