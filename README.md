@@ -3,14 +3,14 @@
 Demo app to manage **flights and passengers**.  
 This monorepo contains a **PHP backend (Apache)** and some **frontend** assets/examples.
 
-## ✨ Features
+##  Features
 - Home page with links:
   - Passenger and Flight Report
   - Passenger Entry Form
 - MySQL connection (sample DB: `airportdb`)
 - Clean URLs via Apache `.htaccess`
 
-## 📁 Project structure
+## Project structure
 Wonderlust/
 ├── backend/ # PHP backend code
 │ ├── public/ # DocumentRoot (index.php, assets, pages)
@@ -24,13 +24,13 @@ Wonderlust/
 markdown
 Copy code
 
-## 🧰 Requirements
+##  Requirements
 - PHP 8.1+ with Apache (XAMPP/MAMP/WAMP **or** Docker)
 - MySQL/MariaDB 10.4+
 - Git
 - (optional) Node.js if you want to work on `frontend/`
 
-## 🚀 Quick start (XAMPP / Windows)
+##  Quick start (XAMPP / Windows)
 1. **Import the database**  
    Open `http://localhost/phpmyadmin` → **Import** → choose `database/schema.sql`.  
    You should see a DB named **`airportdb`** with tables.
@@ -61,7 +61,7 @@ Restart Apache.
 
 Open the app → http://localhost
 
-## 💡 Does the database only work with XAMPP?
+##  Does the database only work with XAMPP?
 No. XAMPP is just a local bundle. The app works with any MySQL server (Docker, hosting provider, VPS).
 Use the correct credentials in backend/.env:
 
@@ -71,7 +71,7 @@ Docker: DB_HOST=db (service name)
 
 Production host: provider’s host/user/password/DB name
 
-## 🐳 Optional: Docker (dev)
+##  Optional: Docker (dev)
 Example docker-compose.yml:
 
 yaml
@@ -98,7 +98,7 @@ Copy code
 docker compose up -d
 Then open http://localhost:8080.
 
-## 🔐 Security / Secrets
+##  Security / Secrets
 
 Never commit credentials: keep them in backend/.env (already git-ignored).
 
@@ -106,7 +106,7 @@ If you ever use Google/Maps keys in the browser, restrict them in Google Cloud (
 
 If a secret leaked in the repo: rotate/delete it at the provider, remove from code, and (optionally) clean git history.
 
-## 🧪 DB connection test (optional)
+##  DB connection test (optional)
 Create backend/public/db-test.php:
 
 php
@@ -117,7 +117,7 @@ $mysqli = @new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME, (int)DB_PORT);
 echo $mysqli->connect_errno ? 'KO: '.$mysqli->connect_error : 'OK: '.DB_NAME;
 Visit http://localhost/db-test.php and delete the file after testing.
 
-## 📦 Deploy (production)
+##  Deploy (production)
 Shared hosting (Apache + PHP + MySQL)
 
 Upload only backend/
@@ -138,8 +138,8 @@ VirtualHost pointing to /var/www/wonderlust/backend/public
 
 Put production .env, restart Apache
 
-## 📝 License
+##  License
 MIT
 
-👤 Author
+ Author
 Tommaso Rea (Famirtom)
